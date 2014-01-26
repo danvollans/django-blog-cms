@@ -21,6 +21,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# Use settings from configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.' + DATABASE_ENGINE,
