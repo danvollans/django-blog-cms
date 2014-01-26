@@ -1,0 +1,42 @@
+#body_wrapper {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header_content {
+    width: 80%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+#page_content {
+    width: 65%;
+    float: left;
+}
+#sidebar_content {
+    width: 15%;
+    margin-right: 20px;
+    float: left;
+}
+#admin-bar {
+    width: 600px;
+    margin-left:auto;
+    margin-right: auto;
+    float: left;
+}
+.post-item {
+    margin-bottom: 20px;
+}
+.post-title {
+    float: left;
+    font-size: 16pt;
+}
+.post-date {
+    float: right;
+    font-size: 10pt;
+}
+.post-heading {
+    height: 40px;
+}
+.clear-float {
+    float: none;
+}

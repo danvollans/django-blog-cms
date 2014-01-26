@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% crispy form %}
+    <script>
+    $( document ).ready(function() {
+        $("#id_post_body").sceditor({
+            plugins: "xhtml",
+            style: "/static/Homemade/sceditor/minified/jquery.sceditor.default.min.css",
+            //: "/static/Homemade/sceditor/minified/themes/square.min.css",
+            emoticonsRoot: "/static/HomeMade/sceditor/"
+        });
+
+        // patch to fix toolbar interferes with bootstrap
+        $('a.sceditor-button').css('box-sizing', 'content-box');
+
+    });
+    </script>
+{% endblock %}

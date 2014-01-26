@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homemade Blog</title>
+    <script type="text/javascript" src="/static/Homemade/js/jquery.js"></script>
+    <link type='text/css' href='/static/Homemade/css/site.css' rel='stylesheet'>
+    <link type='text/css' href='/static/Homemade/css/bootstrap.css' rel='stylesheet'>
+    <link type='text/css' href='/static/Homemade/css/bootstrap-theme.css' rel='stylesheet'>
+    <script type="text/javascript" src="/static/Homemade/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/Homemade/sceditor/minified/themes/default.min.css" type="text/css" media="all" />
+    <script type="text/javascript" src="/static/Homemade/sceditor/minified/jquery.sceditor.bbcode.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("a#" + "{{ current_view }}" + "_link").addClass("active");
+        });
+    </script>
+
+</head>
+<body>
+
+<div id="body_wrapper">
+    <div id="header_content">
+        <img id='header-image' src="/static/Homemade/images/italy_lake.jpg"/>
+    </div>
+
+    <div id="sidebar_content">
+        <div class="" id="pages">
+            <div class="list-group">
+                {% for page in sidebar_pages %}
+                    <a id="{{ page.short_name }}_link" href="{{ page.view }}" class="list-group-item">{{ page.display_name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <div id="admin-bar">
+            <div class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class=""><a href="/add_post">Add Post</a></li>
+                            <li><a href="/add_tags">Add Tags</a></li>
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Add/Edit Page<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/edit_page/">Add New Page</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown-header">Edit Pages:</li>
+                                    {% for page in sidebar_pages %}
+                                    {% if page.dynamic == True %}
+                                        <li><a id="{{ page.short_name }}_link" href="/edit_page/{{ page.page_id }}" class="list-group-item">{{ page.display_name }}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        You are not authenticated.
+    {% endif %}
+
+    <div id="page_content">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+
+</div>
+</body>
+</html>
